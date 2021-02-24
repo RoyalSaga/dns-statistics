@@ -1,0 +1,56 @@
+import static fr.il_totore.manadrop.MinecraftDependencyHelper.paperApi
+import static fr.il_totore.manadrop.MinecraftRepositoryHelper.paperPublic
+import static fr.il_totore.manadrop.MinecraftRepositoryHelper.sonatype
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.30'
+    id 'fr.il_totore.manadrop' version '0.4.1-SNAPSHOT'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+group 'net.royalsaga.minecraft.lobby'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+
+    paperPublic()
+    sonatype()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    // implementation 'me.mattstudios.utils:matt-framework:1.4'
+
+    compileOnly paperApi('1.16.5')
+}
+
+shadowJar {
+    archiveFileName = "DNS Statistics [${project.version}].jar"
+
+    [
+            'kotlin'           : 'kotlin',
+            'me.mattstudios.mf': 'commands'
+    ].each { relocate(it.key, project.group + ".dnssttistics.libs." + it.value) }
+}
+
+spigot {
+    desc {
+        named 'DNSStatistics' //Default: the project name
+        version project.version //Default: the project version
+        authors 'RoyalSaga'
+        main "${project.group}.dnsstatistics.DnsStatisticsPlugin"
+        description('Small tool for tracking how many players joined using a certain (sub)domain')
+
+        command {
+            named 'dnsstatistics'
+        }
+
+        permission {
+            named 'dnsstatistics.command'
+        }
+    }
+}
+
+processResources.finalizedBy(spigotPlugin)
