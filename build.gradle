@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'net.royalsaga.minecraft.lobby'
-version '1.0.0'
+version '1.0.1'
 
 repositories {
     mavenCentral()
@@ -32,13 +32,12 @@ shadowJar {
     [
             'kotlin'           : 'kotlin',
             'me.mattstudios.mf': 'commands'
-    ].each { relocate(it.key, project.group + ".dnssttistics.libs." + it.value) }
+    ].each { relocate(it.key, project.group + ".dnsstatistics.libs." + it.value) }
 }
 
 spigot {
     desc {
-        named 'DNSStatistics' //Default: the project name
-        version project.version //Default: the project version
+        named 'DNSStatistics'
         authors 'RoyalSaga'
         main "${project.group}.dnsstatistics.DnsStatisticsPlugin"
         description('Small tool for tracking how many players joined using a certain (sub)domain')
