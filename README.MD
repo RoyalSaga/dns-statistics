@@ -1,2 +1,2 @@
 # dns-statistics
-Small tool for tracking how many players joined using a certain (sub)domain.
+Small tool for tracking how many players joined using a certain (sub)domain. [![Codacy Badge](https://app.codacy.com/project/badge/Grade/330eb03ed01c45e1b8e795fb2305663c)](https://www.codacy.com/gh/RoyalSaga/dns-statistics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RoyalSaga/dns-statistics&amp;utm_campaign=Badge_Grade)
