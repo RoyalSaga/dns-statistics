@@ -11,7 +11,11 @@ class DnsStatisticsPlugin : JavaPlugin() {
         val storage = Storage(this)
 
         server.pluginManager.registerEvents(PlayerLoginListener(storage), this)
-        getCommand("dnsstatistics")?.setExecutor(DnsStatisticsCommand(storage))
+        getCommand("dnsstatistics")?.apply {
+            val command = DnsStatisticsCommand(storage)
+            setExecutor(command)
+            tabCompleter = command
+        }
     }
 
 }
