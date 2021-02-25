@@ -15,11 +15,13 @@ class DnsStatisticsCommand(private val storage: Storage) : CommandExecutor {
         }
 
         var total = 0
-        val message = storage.getTotalStatistics().joinToString(separator = "&f, ") {
+        val message = storage.getTotalStatistics().joinToString(separator = "\n") {
             total += it.second
-            return@joinToString "&7${it.first} &8(&9${it.second}&8)"
+            "&8* &7${it.first} &9${it.second}"
         }
-        sender.sendMessage("&7Total: &9$total\n$message".color())
+
+        sender.sendMessage("&7Total: &9$total".color())
+        sender.sendMessage(message.color())
         return true
     }
 
